@@ -1,0 +1,40 @@
+Bootstrap: shub
+From: singularityhub/centos:latest
+
+%runscript
+    exec echo "The runscript is the containers default runtime command!"
+
+%post
+    #update of base of and update
+    yum -y update -x setup
+    yum -y install yum-utils epel-release
+    yum -y install https://github.com/openhpc/ohpc/releases/download/v1.3.GA/ohpc-release-1.3-1.el7.x86_64.rpm
+
+    yum -y install ohpc-base-compute lmod-ohpc EasyBuild-ohpc GitPython pysvn graphviz vim openssl-devel
+    yum -y groupinstall "Development tools"
+
+    mkdir -p /sw/local/el7/x86_64
+    mkdir -p /opt/eb
+    chmod -R 777 /opt/eb
+
+    useradd eb
+
+    su eb -c "export EASYBUILD_BUILDPATH=/dev/shm;
+    export EASYBUILD_MODULES_TOOL=Lmod;
+    export EASYBUILD_PREFIX=/opt/eb;
+
+    source /etc/profile.d/lmod.sh;
+
+    module load EasyBuild;
+
+    eb --install-latest-eb-release"
+
+    
+    
+
+%environment
+    export EASYBUILD_MODULES_TOOL=Lmod
+    export EASYBUILD_PREFIX=/sw/local/el7/x86_64
+    export EASYBUILD_BUILDPATH=/dev/shm
+    source /etc/profile.d/lmod.sh
+    module use /opt/eb/modules/all:/sw/local/el7/x86_64/modules/all:/opt/ohpc/pub/modulefiles:/etc/modulefiles
