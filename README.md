@@ -1,6 +1,10 @@
 # easybuild-singularity-testbench
 
-Quick start:
+### TL/DR:
+
+Singularity recipe to install centos7 + openhpc + easybuild with some jingles and bells around.
+
+### Quick start:
 
 1) Install Singularity (this recipe was tested with 2.5.1 version)
 2) ensure you have enough space in /dev/shm as we use this "ramdisk" as a build directory
