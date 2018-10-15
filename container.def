@@ -34,18 +34,21 @@ From: singularityhub/centos:latest
     yum -y groupinstall "Development tools"
     yum -y install openssl openssl-devel openssl-libs	#needed for some eb-builded sw
 
+    #we want build RPMs so let's install FPM as described on https://fpm.readthedocs.io/en/latest/installing.html
+    yum -y install ruby-devel gcc make rpm-build rubygems	# ruby env and its deps
+    gem install --no-ri --no-rdoc fpm				# fpm itself
+
     #ofed components we need:
-    yum -y install rdma-core-devel
+    yum -y install rdma-core-devel	#deps of foss2018b
 
 
     
 
     #mountpoints for EB sw tree:
     mkdir -p /sw/local/el7/x86_64
-    mkdir -p /opt/eb
-    chmod -R 777 /opt/eb
+    mkdir -p /opt/eb && chmod -R 777 /opt/eb	# here we'll install the latest easybuild
 
-    useradd eb
+    useradd eb	# local eb user as eb doesn't like root
 
     su eb -c "export EASYBUILD_BUILDPATH=/dev/shm && export EASYBUILD_MODULES_TOOL=Lmod && export EASYBUILD_PREFIX=/opt/eb && source /etc/profile.d/lmod.sh && module load EasyBuild && eb --install-latest-eb-release"
 
