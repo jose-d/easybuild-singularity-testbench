@@ -1,5 +1,12 @@
 # easybuild-singularity-testbench
 
+Quick start:
+
+1) Install Singularity (this recipe was tested with 2.5.1 version)
+2) ensure you have enough space in /dev/shm as we use this "ramdisk" as a build directory
+3) create directory which will serve as ```EASYBUILD_PREFIX``` inside of container (in example below I use ```/mnt/shared-scratch/u/jose/0```)
+4) build, start and use.
+
 ### variables explanation:
 * ```/opt/ohpc/pub/libs/singularity/2.5.1/bin/singularity``` - path to Singularity binary on host
 * ```/mnt/shared-scratch/u/jose/0``` - directory on host where we want to save sw tree builded by EasyBuild
@@ -8,7 +15,7 @@
 
 ## build
 
-create container 'container.img':
+(remove possibly old one) and create new container 'container.img':
 
     sudo /opt/ohpc/pub/libs/singularity/2.5.1/bin/singularity build ./container.img ./container.def
 
