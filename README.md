@@ -1,5 +1,11 @@
 # easybuild-singularity-testbench
 
+### variables explanation:
+* ```/opt/ohpc/pub/libs/singularity/2.5.1/bin/singularity``` - path to Singularity binary on host
+* ```/mnt/shared-scratch/u/jose/0``` - directory on host where we want to save sw tree builded by EasyBuild
+* ```/sw/local/el7/x86_64``` - directory inside of container where EasyBuild do his job (now hardcoded in def file)
+
+
 ## build
 
 create container 'container.img':
