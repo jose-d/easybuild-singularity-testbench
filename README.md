@@ -7,8 +7,8 @@ Singularity recipe to install centos7 + openhpc + easybuild with some jingles an
 ### Quick start:
 
 1) Install Singularity (this recipe was tested with 2.5.1 version) You can install it from [sources]( https://github.com/sylabs/singularity/releases), from [EPEL](https://fedoraproject.org/wiki/EPEL), or from [ohpc](https://openhpc.community/downloads/).
-2) ensure there is enough space in /dev/shm as we use this "ramdisk" as a build directory
-3) create directory which will serve as ```EASYBUILD_PREFIX``` inside of container (in example below I use ```/mnt/shared-scratch/u/jose/0```) Consider usage of fast SSD if speed is priority, or network FS, if the results should persist.
+2) ensure there is enough space in ```/dev/shm``` as we use this _ramdisk_ as a build directory. Container image itself needs nowadays ~ 0.5 GB.
+3) on host, create directory which will serve as ```EASYBUILD_PREFIX``` inside of container (in example below I use ```/mnt/shared-scratch/u/jose/0```) Consider usage of fast SSD if speed is priority, or network FS, if the results should persist.
 4) build, start and use.
 
 ### variables explanation:
@@ -19,7 +19,7 @@ Singularity recipe to install centos7 + openhpc + easybuild with some jingles an
 
 ## build
 
-(remove possibly old one) and create new container 'container.img':
+(remove possibly old one) and create new container image 'container.img':
 
     sudo /opt/ohpc/pub/libs/singularity/2.5.1/bin/singularity build ./container.img ./container.def
 
