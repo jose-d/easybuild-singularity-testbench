@@ -43,6 +43,9 @@ Ready-to-use container is now available in Singularity library as `library://jos
 ### example
 
 #### Download container
+
+hint: replace `/opt/singularity/3.0.1/bin/singularity` with path to your Singularity binary. Usually it's somewhere in `/usr/local`. 
+
 ```
 [jose@koios2 test_of_slib]$ sudo /opt/singularity/3.0.1/bin/singularity build c7hpc.img library://jose_d/default/c7hpc 
 WARNING: Authentication token file not found : Only pulls of public images will succeed
@@ -54,11 +57,16 @@ INFO:    Build complete: c7hpc.img
 ```
 #### Create directory for build
 
+hint: it should be in directory with RW access rights.
+
 ```
 [jose@koios2 test_of_slib]$ mkdir /mnt/shared-scratch/u/jose/14
 ```
 
 #### Start shell and build "vim"
+
+`/mnt/shared-scratch/u/jose/14` is directory with RW access rights on host system.
+`/sw/local/el7/x86_64` is directory INSIDE of container, serving as target for build. If you don't like it, change it here, and also in `container.def`. 
 
 ```
 [jose@koios2 test_of_slib]$ singularity shell -B /mnt/shared-scratch/u/jose/14:/sw/local/el7/x86_64 ./c7hpc.img 
