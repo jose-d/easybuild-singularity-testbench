@@ -6,13 +6,13 @@ Singularity recipe to install centos7 + openhpc + easybuild with some jingles an
 
 ### Quick start:
 
-1) Install Singularity (this recipe was tested with 2.5.1 version) You can install it from [sources]( https://github.com/sylabs/singularity/releases), from [EPEL](https://fedoraproject.org/wiki/EPEL), or from [ohpc](https://openhpc.community/downloads/).
+1) Install Singularity (this recipe was tested with 3.0.1 version) You can install it from [sources]( https://github.com/sylabs/singularity/releases).
 2) ensure there is enough space in ```/dev/shm``` as we use this _ramdisk_ as a build directory. Container image itself needs nowadays ~ 0.5 GB.
 3) on host, create directory which will serve as ```EASYBUILD_PREFIX``` inside of container (in example below I use ```/mnt/shared-scratch/u/jose/0```) Consider usage of fast SSD if speed is priority, or network FS, if the results should persist.
 4) build, start and use.
 
 ### variables explanation:
-* ```/opt/ohpc/pub/libs/singularity/2.5.1/bin/singularity``` - path to Singularity binary on host
+* ```/opt/singularity/3.0.1/bin/singularity``` - path to Singularity binary on host
 * ```/mnt/shared-scratch/u/jose/0``` - directory on host where we want to save sw tree builded by EasyBuild
 * ```/sw/local/el7/x86_64``` - directory inside of container where EasyBuild do his job (now hardcoded in def file)
 
@@ -21,7 +21,7 @@ Singularity recipe to install centos7 + openhpc + easybuild with some jingles an
 
 (remove possibly old one) and create new container image 'container.img':
 
-    sudo /opt/ohpc/pub/libs/singularity/2.5.1/bin/singularity build ./container.img ./container.def
+    sudo /opt/singularity/3.0.1/bin/singularity build ./container.img ./container.def
 
 ## start
 
@@ -30,9 +30,12 @@ bind any directory as the sw tree inside of container and start a shell inside
     singularity shell -B /mnt/shared-scratch/u/jose/0:/sw/local/el7/x86_64 ./container.img
 
 ## use
-
  
     Singularity container.img:~/temp/bad_eb> eb ./Perl-5.28.0-GCCcore-7.3.0.eb -r
     == temporary log file in case of crash /tmp/eb-D4Hn8U/easybuild-_jCwjR.log
     ERROR: Failed to process easyconfig /home/users/jose/temp/bad_eb/Perl-5.28.0-GCCcore-7.3.0.eb: One or more OS dependencies were not found: [('openssl-devel', 'libssl-dev', 'libopenssl-devel')]
     Singularity container.img:~/temp/bad_eb>
+
+## Singularity library
+
+Ready-to-use container is now available in Singularity library as `library://jose_d/default/c7hpc`, [(my Singularity home dir URL)](https://cloud.sylabs.io/library/jose_d)
