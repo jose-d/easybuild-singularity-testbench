@@ -64,6 +64,10 @@ From: singularityhub/centos:latest
 
     yum -y install rdma-core-devel	#deps of foss2018b
 
+    # deps of Mathematica
+
+    yum -y install alsa-lib
+
     # latest EB:
     # - perhaps current OHPC is not using latest easybuild. So let's use build-in self-update feature of easybuild,
     #   and install (when needed) latest easybuild into /opt/eb. If we have latest EB, this will not do anything
@@ -80,4 +84,3 @@ From: singularityhub/centos:latest
 
     source /etc/profile.d/lmod.sh
     module use /opt/eb/modules/all:/sw/local/el7/x86_64/modules/all:/opt/ohpc/pub/modulefiles:/etc/modulefiles
-
