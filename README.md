@@ -28,6 +28,10 @@ Singularity recipe to install centos7 + openhpc + easybuild with some jingles an
 bind any directory as the sw tree inside of container and start a shell inside
 
     singularity shell -B /mnt/shared-scratch/u/jose/0:/sw/local/el7/x86_64 ./container.img
+    
+Assuming additional mountpoints we might use more bind mounts:
+
+    singularity shell -B /mnt/shared-scratch/u/jose/16:/sw/local/el7/x86_64 -B /home/soft:/home/soft ./container.img
 
 ## use
  
