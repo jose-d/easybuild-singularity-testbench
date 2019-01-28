@@ -40,7 +40,7 @@ From: singularityhub/centos:latest
 
     # .. and install all the well known tools and libs we like, including compute-node part of ohpc:
 
-    yum -y install ohpc-base-compute lmod-ohpc EasyBuild-ohpc GitPython pysvn graphviz vim zlib-devel libyaml-devel gdbm-devel readline-devel ncurses-devel libffi-devel curl git redis libxml2-devel libxslt-devel libcurl-devel libicu-devel python libuuid-devel wget waf less openssl openssl-devel openssl-libs tree strace
+    yum -y install ohpc-base-compute lmod-ohpc EasyBuild-ohpc GitPython pysvn graphviz vim zlib-devel libyaml-devel gdbm-devel readline-devel ncurses-devel libffi-devel curl git redis libxml2-devel libxslt-devel libcurl-devel libicu-devel python libuuid-devel wget waf less openssl openssl-devel openssl-libs tree strace expect
 
     # slurm client can be useful for some tests..:
 
