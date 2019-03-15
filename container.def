@@ -48,7 +48,7 @@ From: singularityhub/centos:latest
     # ofed components
     # - it dependency of foss20XX-X
 
-    yum -y install rdma-core-devel	#deps of foss2018b
+    yum -y install libibverbs-devel-41mlnx1-OFED.4.5.0.1.0.45101.x86_64	#deps of foss2018b
 
     # deps of Mathematica
 
