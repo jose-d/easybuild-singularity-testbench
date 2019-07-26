@@ -1,0 +1,28 @@
+BootStrap: library
+From: jose_d/default/centos7_hpc_base:latest
+
+%post
+    # update Easybuild to latest version available
+    su eb -c "export EASYBUILD_BUILDPATH=/dev/shm \
+      && export EASYBUILD_MODULES_TOOL=Lmod \
+      && export EASYBUILD_PREFIX=/opt/eb \
+      && source /etc/profile.d/lmod.sh \
+      && module load EasyBuild \
+      && eb --install-latest-eb-release"
+
+    # install foss2019a toolchain
+    su eb -c "export EASYBUILD_BUILDPATH=/dev/shm \
+      && export EASYBUILD_MODULES_TOOL=Lmod \
+      && export EASYBUILD_PREFIX=/opt/eb \
+      && source /etc/profile.d/lmod.sh \
+      && module purge \
+      && module load EasyBuild \
+      && eb /opt/eb/software/EasyBuild/3.9.3/lib/python2.7/site-packages/easybuild_easyconfigs-3.9.3-py2.7.egg/easybuild/easyconfigs/f/foss/foss-2019a.eb -r"
+
+%environment
+    export EASYBUILD_MODULES_TOOL=Lmod
+    export EASYBUILD_PREFIX=/opt/eb
+    export EASYBUILD_BUILDPATH=/dev/shm
+
+    source /etc/profile.d/lmod.sh
+    module use /opt/eb/modules/all
