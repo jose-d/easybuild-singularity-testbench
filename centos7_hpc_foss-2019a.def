@@ -27,7 +27,7 @@ From: jose_d/default/centos7_hpc_base:latest
     source /etc/profile.d/lmod.sh
     module use /opt/eb/modules/all
 
-    # folowing mechanism was decribed in EasyBuild documentation:
+    # folowing mechanism was decribed in EasyBuild documentation - module is loaded by-default
     #  source: https://easybuild.readthedocs.io/en/latest/Containers.html
     source /etc/profile
     export LMOD_SHORT_TIME=86400
