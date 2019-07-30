@@ -24,9 +24,6 @@ From: jose_d/default/centos7_hpc_base:latest
     export EASYBUILD_PREFIX=/opt/eb
     export EASYBUILD_BUILDPATH=/dev/shm
 
-    source /etc/profile.d/lmod.sh
-    module use /opt/eb/modules/all
-
     # folowing mechanism was decribed in EasyBuild documentation - module is loaded by-default
     #  source: https://easybuild.readthedocs.io/en/latest/Containers.html
     source /etc/profile
