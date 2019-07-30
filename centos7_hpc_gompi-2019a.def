@@ -31,4 +31,4 @@ From: jose_d/default/centos7_hpc_base:latest
     module --force purge
     module unuse $MODULEPATH
     module use /opt/eb/modules/all
-    module load foss/2019a
+    module load gompi/2019a
