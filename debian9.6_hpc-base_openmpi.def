@@ -6,9 +6,8 @@ From: jose_d/default/debian9.6_hpc-base
 
 %post
 
-    apt -y install libnuma-dev
-
-    
+    # build deps of openMPI
+    apt -y install libnuma-dev munge
 
     # OpenMPI 
     wget https://download.open-mpi.org/release/open-mpi/v2.1/openmpi-2.1.6.tar.gz 
@@ -17,4 +16,5 @@ From: jose_d/default/debian9.6_hpc-base
     make -j 65
     make install
 
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+%environment
+    export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
