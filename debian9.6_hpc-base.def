@@ -9,7 +9,7 @@ From: debian:9.6
     apt-get -y update \
       && apt-get install -y --no-install-recommends apt-utils
     apt install -y build-essential
-    apt install -y git wget vim tar
+    apt install -y git wget vim tar curl strace
  
     # dependencies of OFED:
     apt install -y lsb-release flex procps libltdl-dev automake pciutils autotools-dev tk debhelper libnl-route-3-200 m4 libglib2.0-0 kmod libnl-3-200 tcl graphviz lsof gfortran libgfortran3 bison pkg-config ethtool autoconf libnuma1 dpatch chrpath swig
@@ -28,6 +28,7 @@ From: debian:9.6
     tar -xzf ${MOFED_IMAGE}
     ${MOFED_DIR}/mlnxofedinstall --user-space-only --without-fw-update --all -q
 
+    # cleanup of mofed install
     cd ..
     rm -rf ${MOFED_DIR}
     rm -f ${MOFED_IMAGE}
