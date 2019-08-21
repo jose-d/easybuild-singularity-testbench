@@ -31,4 +31,5 @@ From: jose_d/default/centos7_hpc_foss-2019a
     module --force purge
     module unuse $MODULEPATH
     module use /opt/eb/modules/all
+    module load foss
     module load GSL
