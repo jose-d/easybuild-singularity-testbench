@@ -1,0 +1,34 @@
+BootStrap: library
+From: jose_d/default/centos7_hpc_foss-2019a
+
+%post
+    # update Easybuild to latest version available
+    su eb -c "export EASYBUILD_BUILDPATH=/dev/shm \
+      && export EASYBUILD_MODULES_TOOL=Lmod \
+      && export EASYBUILD_PREFIX=/opt/eb \
+      && source /etc/profile.d/lmod.sh \
+      && module load EasyBuild \
+      && eb --install-latest-eb-release"
+
+    # install GSL 2.5
+    su eb -c "export EASYBUILD_BUILDPATH=/dev/shm \
+      && export EASYBUILD_MODULES_TOOL=Lmod \
+      && export EASYBUILD_PREFIX=/opt/eb \
+      && source /etc/profile.d/lmod.sh \
+      && module purge \
+      && module load EasyBuild \
+      && eb /opt/eb/software/EasyBuild/3.9.3/lib/python2.7/site-packages/easybuild_easyconfigs-3.9.3-py2.7.egg/easybuild/easyconfigs/g/GSL/GSL-2.5-GCC-8.2.0-2.31.1.eb -r"
+
+%environment
+    export EASYBUILD_MODULES_TOOL=Lmod
+    export EASYBUILD_PREFIX=/opt/eb
+    export EASYBUILD_BUILDPATH=/dev/shm
+
+    # folowing mechanism was decribed in EasyBuild documentation - module is loaded by-default
+    #  source: https://easybuild.readthedocs.io/en/latest/Containers.html
+    source /etc/profile
+    export LMOD_SHORT_TIME=86400
+    module --force purge
+    module unuse $MODULEPATH
+    module use /opt/eb/modules/all
+    module load GSL
